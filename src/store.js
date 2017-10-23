@@ -4,7 +4,7 @@ import createStore from 'redux-zero';
 let QUIZ = [
     {
         questions: "Which is the oldest airline in the world?",
-        options: [["Avianca", "KLM", "Qantas"]],
+        options: ["Avianca", "KLM", "Qantas"],
         image: "https://ihatetomatoes.net/react-tutorials/abc-quiz/images/plane.svg"
     },
     {
@@ -31,14 +31,14 @@ let QUIZ = [
         image: "https://ihatetomatoes.net/react-tutorials/abc-quiz/images/car.svg"
     }
 ];
-const answers = [];
-const index =0;
 
 
-const InitialState = {
+
+const initialState = {
     quiz: QUIZ,
-
-}
+    answers : [],
+    index : 0
+};
 
 const store = createStore(initialState);
 export default store;
