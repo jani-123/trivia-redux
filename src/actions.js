@@ -8,16 +8,7 @@ export const answer = (value, index) =>{
   });
   store.setState({
      quiz: newList,
-     index: +1
+     index: index + 1
   });
 
 }
-
-// export const getImage = () => {
-//       store.quiz[ store.index ].image;
-//       console.log(store.quiz[ store.index ].image);
-//    }
-
-// export const getOptions = () => {
-//       store.quiz.options[ store.index ];
-//    }

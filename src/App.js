@@ -16,10 +16,9 @@ const Option = ( {index , quiz} ) => {
 const OptionsList = ({quiz,index}) => {
   const selectOptions = (e) =>  {
     let value = e.target.id;
-    console.log('value: ', value);
-    alert("sale");
+  
     answer(value, index);
-    console.log('index: ', index);
+ 
  }; 
   const list = quiz[index].options.map((value,index)=>{
     return(
@@ -44,14 +43,9 @@ const TriviaApp = ({quiz, index}) => {
           <p>{quiz[index].questions}</p>
         </div>
         <div>
-         
             {
               <OptionsList quiz={quiz} index={index}/>
-             
-
             }
-          
-           
         </div>
      </div>
   );
