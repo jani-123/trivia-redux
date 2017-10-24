@@ -11,7 +11,7 @@ export const nexTrivia = (option,index,correct) =>{
      index: index + 1 
   });
   if (quiz[index].rptaCorrect == option) {
-    this.setState({
+    store.setState({
       correct: correct + 1
     })
   }
