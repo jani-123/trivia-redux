@@ -10,4 +10,12 @@ export const nexTrivia = (option,index) =>{
      index: index + 1 
   });
 }
-
+export const correct = () =>{
+  let quiz = [...store.getState().quiz];
+  let optionss = [...store.getState().answers];
+  if(quiz === optionss){
+    store.setState({
+      correct: correct + 1
+    })
+  }
+}

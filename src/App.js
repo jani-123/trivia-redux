@@ -1,85 +1,82 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
-import {nexTrivia , saveAnswers} from './actions';
-import { connect } from 'redux-zero/react'; //  importa de react
+import { nexTrivia, saveAnswers } from "./actions";
+import { connect } from "redux-zero/react"; //  importa de react
 
-// export const ListAnswers = () =>{
-//   return(
-//     <div>
-//       <h4>HOLA</h4>
-//     </div>
-//   )
-// };
-
-const YourAnswers = ({quiz , answers}) =>{ 
-  const respuestas = answers.map((item,index)=>{
-    return(
-      <p key={index}> {quiz[index].questions}<strong>{item}</strong></p>
-    )
+const YourAnswers = ({ quiz, answers }) => {
+  const respuestas = answers.map((item, index) => {
+    return (
+      <p key={index}>
+        {" "}
+        {quiz[index].questions}
+        <strong>{item}</strong>
+      </p>
+    );
   });
-  return(
-  <div>
-    <h2>  Here are your answers: </h2>
-      <div>
-      {respuestas}
-     </div>
-     <button className="btn btn-lg btn-primary"> Submit </button>
+  return (
+    <div>
+      <h2> Here are your answers: </h2>
+      <div>{respuestas}</div>
+      <button className="btn btn-lg btn-primary"> Submit </button>
     </div>
-  )
- }
+  );
+};
 
-
-const Option = ( {index , quiz} ) => {
+const Option = ({ index, quiz }) => {
   return quiz.map((value, index) => {
     return (
       <div className="btnRespuestas">
-        <button className='btn btn-lg'>{value.options}</button>
+        <button className="btn btn-lg">{value.options}</button>
       </div>
-    )
-  })
-};
-const OptionsList = ({quiz,index}) => {
-  const selectOptions = (e) =>  {
-    let option = e.target.id;
-    nexTrivia(option , index);
-    
- }; 
-  const list = quiz[index].options.map((value,index)=>{
-    return(
-      <li key={index}><button onClick={selectOptions} id={value}>{value}</button></li>
-    )
+    );
   });
-  return(
-    <ul>
-    {list}
-    </ul>
-  )
-
-}
-const TriviaApp = ({quiz, index, answers}) => {
-  
+};
+const OptionsList = ({ quiz, index, correct }) => {
+  const selectOptions = e => {
+    let option = e.target.id;
+    nexTrivia(option, index);
+    //correct(correct);
+  };
+  const list = quiz[index].options.map((value, index) => {
+    return (
+      <li key={index}>
+        <button onClick={selectOptions} id={value}>
+          {value}
+        </button>
+      </li>
+    );
+  });
+  return <ul>{list}</ul>;
+};
+const TriviaApp = ({ quiz, index, answers, correct }) => {
   return (
-     <div> 
-        <div>
-        {index !== quiz.length && <img src={quiz[index].image}/>}
-        {index === quiz.length && <img src="https://image.freepik.com/iconos-gratis/camion_318-143767.jpg" />}
-         
-        </div>
-        <div>
+    <div>
+      <div>
+        {index !== quiz.length && <img src={quiz[index].image} />}
+        {index === quiz.length && (
+          <img src="https://image.freepik.com/iconos-gratis/camion_318-143767.jpg" />
+        )}
+      </div>
+      <div>
         {index !== quiz.length && <h4>{quiz[index].questions}</h4>}
         {index === quiz.length && <h3> correct</h3>}
-        </div>
-        <div>
-        {index !== quiz.length && <OptionsList quiz={quiz} index={index}/>}
+      </div>
+      <div>
+        {index !== quiz.length && (
+          <OptionsList quiz={quiz} index={index} correct={correct} />
+        )}
         {index === quiz.length && <YourAnswers quiz={quiz} answers={answers} />}
-            
-        </div>
-        
-     </div>
+      </div>
+    </div>
   );
-}
+};
 
-const mapToProps = ({ quiz ,index , answers}) => ({ quiz ,index, answers} );
+const mapToProps = ({ quiz, index, answers, correct }) => ({
+  quiz,
+  index,
+  answers,
+  correct
+});
 export default connect(mapToProps)(TriviaApp);
