@@ -1,6 +1,7 @@
 import store from './store';
 
-export const nexTrivia = (option,index) =>{
+export const nexTrivia = (option,index,correct) =>{
+  let quiz = [...store.getState().quiz];
   let optionAnswers = [...store.getState().answers];
   let indice = store.getState().index;
   let corrects = store.getState().correct;
@@ -9,13 +10,10 @@ export const nexTrivia = (option,index) =>{
      answers: optionAnswers,
      index: index + 1 
   });
-}
-export const correct = () =>{
-  let quiz = [...store.getState().quiz];
-  let optionss = [...store.getState().answers];
-  if(quiz === optionss){
-    store.setState({
+  if (quiz[index].rptaCorrect == option) {
+    this.setState({
       correct: correct + 1
     })
   }
+
 }

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-
 import { nexTrivia, saveAnswers } from "./actions";
 import { connect } from "redux-zero/react"; //  importa de react
 
@@ -9,7 +8,6 @@ const YourAnswers = ({ quiz, answers }) => {
   const respuestas = answers.map((item, index) => {
     return (
       <p key={index}>
-        {" "}
         {quiz[index].questions}
         <strong>{item}</strong>
       </p>
@@ -33,10 +31,11 @@ const Option = ({ index, quiz }) => {
     );
   });
 };
+
 const OptionsList = ({ quiz, index, correct }) => {
   const selectOptions = e => {
     let option = e.target.id;
-    nexTrivia(option, index);
+    nexTrivia(option, index , correct);
     //correct(correct);
   };
   const list = quiz[index].options.map((value, index) => {
