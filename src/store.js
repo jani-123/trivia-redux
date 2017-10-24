@@ -37,7 +37,8 @@ let QUIZ = [
 const initialState = {
     quiz: QUIZ,
     answers : [],
-    index : 0
+    index : 0,
+    correct : 0
 };
 
 const store = createStore(initialState);
