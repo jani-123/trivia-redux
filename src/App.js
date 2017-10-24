@@ -4,6 +4,8 @@ import "./App.css";
 import { nexTrivia, saveAnswers } from "./actions";
 import { connect } from "redux-zero/react"; //  importa de react
 
+
+
 const YourAnswers = ({ quiz, answers }) => {
   const respuestas = answers.map((item, index) => {
     return (
@@ -17,7 +19,7 @@ const YourAnswers = ({ quiz, answers }) => {
     <div>
       <h2> Here are your answers: </h2>
       <div>{respuestas}</div>
-      <button className="btn btn-lg btn-primary"> Submit </button>
+      <button className="btn btn-lg btn-primary" > Submit </button>
     </div>
   );
 };
@@ -49,6 +51,7 @@ const OptionsList = ({ quiz, index, correct }) => {
   });
   return <ul>{list}</ul>;
 };
+
 const TriviaApp = ({ quiz, index, answers, correct }) => {
   return (
     <div>
